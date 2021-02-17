@@ -56,7 +56,15 @@ ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files
 
 replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
+# Preprocess Question files:
+python preprocess.py
 
-# Test code
+
+# Testing the installation
 python pipeline_model.py 
 python gqa_dataset_entry.py 
+
+
+
+# Train
+see mainExplain.py
