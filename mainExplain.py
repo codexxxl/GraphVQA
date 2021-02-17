@@ -9,7 +9,7 @@ CUDA_VISIBLE_DEVICES=2 python mainExplain.py --log-name debug.log && echo 'Groun
 
 
 Distributed Training:
-python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain.py
+CUDA_VISIBLE_DEVICES=0,1,2,7 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain.py
 
 Kill Distributed:
 kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')

@@ -658,8 +658,8 @@ def GQATorchDataset_collate_fn(data):
 if __name__ == '__main__':
 
     torch_geometric.set_debug(True)
-    split = 'train_unbiased'
-    # split = 'val_unbiased'
+    # split = 'train_unbiased'
+    split = 'val_unbiased'
     # split = 'testdev'
 
     dataset = GQATorchDataset(split, build_vocab_flag=False, load_vocab_flag=True)
@@ -725,4 +725,6 @@ if __name__ == '__main__':
                     obj_str = GQA_gt_sg_feature_lookup.SG_ENCODING_TEXT.vocab.itos[obj_str]
                     print(obj_str, end=', ')
                 print()
+            
+            print(gt_scene_graphs.y)
         break

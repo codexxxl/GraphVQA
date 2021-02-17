@@ -10,15 +10,6 @@ The repo contains 4 modules: semantic parser, scene graph encoding, neural execu
 
 
 
-# Prepare data
-
-Download scene graphs: https://nlp.stanford.edu/data/gqa/sceneGraphs.zip
-Download questions: https://nlp.stanford.edu/data/gqa/questions1.2.zip
-
-
-put sceneGraph json files into sceneGraphs/
-put questions json files into questions/original/ (optional)
-
 # Install torchtext, spacy
 conda install -c pytorch torchtext
 conda install -c conda-forge spacy
@@ -27,7 +18,11 @@ python -m spacy download en_core_web_sm
 conda install -c anaconda nltk
 
 also need to python and run: 
+
+
 >>> import nltk
+
+
 >>> nltk.download('wordnet')
 
 # Install PyTorch Geometric
@@ -43,11 +38,23 @@ pip install torch-geometric
 
 
 
+
+# Prepare data
+
+Download scene graphs: https://nlp.stanford.edu/data/gqa/sceneGraphs.zip
+Download questions: https://nlp.stanford.edu/data/gqa/questions1.2.zip
+
+
+put sceneGraph json files into sceneGraphs/
+put questions json files into questions/original/ 
+
+
+
 # Fix Data Path
-ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')
+modify 
+ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files, Constants.py, gqa_dataset_entry.py, preprocess.py
 
-replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA'
-
+replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
 
 # Test code
