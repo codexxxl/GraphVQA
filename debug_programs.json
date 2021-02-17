@@ -1,0 +1,85 @@
+[
+    [
+        "2354786",
+        "Is the sky dark?",
+        [
+        "[2486325]=select(sky)",
+        "?=verify([0], dark)"
+        ],
+        "02930152",
+        "yes",
+        "Yes, the sky is dark.",
+        [
+        "select",
+        "(",
+        "sky",
+        ")",
+        ";",
+        "verify",
+        "(",
+        "[0]",
+        ",",
+        "dark",
+        ")"
+        ],
+        {
+        "answer": {},
+        "question": {
+            "2": "2486325"
+        },
+        "fullAnswer": {
+            "2": "2486325"
+        }
+        }
+    ],
+    [
+        "2375429",
+        "What is on the white wall?",
+        [
+        "[722332]=select(wall)",
+        "?=filter([0], white)",
+        "[722335]=relate_inv([1], on)",
+        "?=query_n([2])"
+        ],
+        "07333408",
+        "pipe",
+        "The pipe is on the wall.",
+        [
+        "select",
+        "(",
+        "wall",
+        ")",
+        ";",
+        "filter",
+        "(",
+        "[0]",
+        ",",
+        "white",
+        ")",
+        ";",
+        "relate_inv",
+        "(",
+        "[1]",
+        ",",
+        "on",
+        ")",
+        ";",
+        "query_n",
+        "(",
+        "[2]",
+        ")"
+        ],
+        {
+        "answer": {
+            "0": "722335"
+        },
+        "question": {
+            "4:6": "722332"
+        },
+        "fullAnswer": {
+            "1": "722335",
+            "5": "722332"
+        }
+        }
+    ]
+]

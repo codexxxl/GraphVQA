@@ -1,0 +1,11 @@
+__pycache__/
+# meta_info/
+.vector_cache/
+models/
+questions/original/
+sceneGraphs/
+questions/
+*.tar
+*.log
+*.pth
+*.h5
