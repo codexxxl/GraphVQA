@@ -101,7 +101,7 @@ kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')
 ```
 
 
-# Bonus: Run the LCGN baseline, 90.23% Accuracy on val_balanced
+# Bonus 1: Run the LCGN baseline, 90.23% Accuracy on val_balanced
 
 
 https://github.com/ronghanghu/lcgn/tree/pytorch
@@ -120,3 +120,25 @@ https://github.com/ronghanghu/lcgn/tree/pytorch
 Project Page: http://ronghanghu.com/lcgn
 
 **This is the (original) TensorFlow implementation of LCGN. A PyTorch implementation is available in the [PyTorch branch](https://github.com/ronghanghu/lcgn/tree/pytorch).**
+
+
+
+# Bonus 2: Run the Symbolic Execution baseline
+WACV 2021 Paper "Meta Module Network for Compositional Visual Reasoning"
+
+
+The symbolic execution for the visual question answering.
+
+
+## Symbolic Execution
+We can run the run.py to perform symbolic execution on the GQA provided scene graph to get the answer.
+  ```
+    python run.py --do_trainval_unbiased
+  ```
+The script will return 
+  ```
+  success rate (ALL) = 0.923610917323838, success rate (VALID) = 0.9605288360151759, valid/invalid = 1033742/41320
+  ```
+It means that for those questions, whose answer is inside the scene graph, the accuracy is 96%. There are 4% of questions without answers inside the scene graph, therefore the overall accuracy is 92.3%. This is good enough as a symbolic teacher to teach the meta module network to reason.
+
+
