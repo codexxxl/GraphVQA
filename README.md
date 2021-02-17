@@ -85,3 +85,24 @@ Kill Distributed:
 kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')
 
 ```
+
+
+# Bonus: Run the LCGN baseline, 90.23% Accuracy on val_balanced
+
+
+https://github.com/ronghanghu/lcgn/tree/pytorch
+
+
+* R. Hu, A. Rohrbach, T. Darrell, K. Saenko, *Language-Conditioned Graph Networks for Relational Reasoning*. in ICCV 2019 ([PDF](https://arxiv.org/pdf/1905.04405.pdf))
+```
+@inproceedings{hu2019language,
+  title={Language-Conditioned Graph Networks for Relational Reasoning},
+  author={Hu, Ronghang and Rohrbach, Anna and Darrell, Trevor and Saenko, Kate},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
+  year={2019}
+}
+```
+
+Project Page: http://ronghanghu.com/lcgn
+
+**This is the (original) TensorFlow implementation of LCGN. A PyTorch implementation is available in the [PyTorch branch](https://github.com/ronghanghu/lcgn/tree/pytorch).**
