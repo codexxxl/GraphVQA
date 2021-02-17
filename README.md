@@ -52,6 +52,20 @@ put sceneGraph json files into sceneGraphs/
 put questions json files into questions/original/ 
 
 
+After this step, the file structure should look like
+```
+explainableGQA
+    questions/
+        original/
+            train_balanced_questions.json
+            val_balanced_questions.json
+            test_balanced_questions.json
+            testdev_balanced_questions.json
+    sceneGraphs/
+        train_sceneGraphs.json
+        val_sceneGraphs.json
+```
+
 
 # Fix Data Path
 modify 
