@@ -11,30 +11,33 @@ The repo contains 4 modules: semantic parser, scene graph encoding, neural execu
 
 
 # Install torchtext, spacy
+```
 conda install -c pytorch torchtext
 conda install -c conda-forge spacy
 conda install -c conda-forge cupy
 python -m spacy download en_core_web_sm
 conda install -c anaconda nltk
-
+```
 also need to python and run: 
 
 
->>> import nltk
-
-
->>> nltk.download('wordnet')
+```
+import nltk
+nltk.download('wordnet')
+```
 
 # Install PyTorch Geometric
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html#installation-via-binaries
 
 
-## My command with torch-1.4.0+cu100
+## My command with torch-1.4.0+cu100. Replace with your versions. 
+```
 pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install --no-index torch-cluster -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install --no-index torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install torch-geometric
+```
 
 
 
@@ -57,14 +60,28 @@ ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files
 replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
 # Preprocess Question files:
+```
 python preprocess.py
+```
 
 
 # Testing the installation
+```
 python pipeline_model.py 
 python gqa_dataset_entry.py 
+```
 
 
 
 # Train
-see mainExplain.py
+```
+Single GPU training: 
+CUDA_VISIBLE_DEVICES=2 python mainExplain.py --log-name debug.log && echo 'Ground Truth Scene Graph Debug'
+
+Distributed Training:
+CUDA_VISIBLE_DEVICES=0,1,2,7 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain.py
+
+Kill Distributed:
+kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')
+
+```
