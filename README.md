@@ -1,5 +1,9 @@
 **Explainable GQA**: Explainable and Transparent GQA framework 
 ========
+
+跑graph那部分的code(model 的code):
+有两个部分，torch_geometric的部分在pipeline_model.py ； 还有一个rule based 的encode scene graph的，就是生成input tensor的，在gqa_dataset_entry.py
+
 PyTorch training code and pretrained models for Explainable GQA. 
 
 This repo is built from scratch. 
