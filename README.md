@@ -77,6 +77,8 @@ ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files
 
 replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
+For the file gqa_dataset_entry.py, replace two additional paths: SCENEGRAPHS and EXPLAINABLE_GQA_DIR with your own sceneGraphs and explainableGQA folder paths.
+
 # Preprocess Question files:
 ```
 python preprocess.py
