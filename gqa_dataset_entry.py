@@ -21,6 +21,11 @@ SCENEGRAPHS = pathlib.Path('/data/weixin/GQA/sceneGraphs/')  # SCENEGRAPHS = ROO
 EXPLAINABLE_GQA_DIR = pathlib.Path('/home/weixin/neuralPoolTest/explainableGQA') 
 
 
+# ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')
+# SCENEGRAPHS = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA/sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
+# EXPLAINABLE_GQA_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA') 
+
+
 SPLIT_TO_H5_PATH_TABLE = {
     'train_unbiased': '/home/ubuntu/GQA/objectDetection/extract/save_train_feature.h5',
     'val_unbiased': '/home/ubuntu/GQA/objectDetection/extract/save_test_feature.h5',
@@ -315,7 +320,7 @@ class GQA_gt_sg_feature_lookup:
                     # reverse of [from self as source, to outgoing]
                     edge_topology_list.append([map_objID_to_node_idx[rel["object"]], node_idx])
                     # re-using name of the relationship
-                    edge_feature_list.append(edge_token_arr)
+                    edge_feature_list.append(-1*edge_token_arr) # yanhao: use a negation to denote reverse relationships
 
         ##################################
         # Convert to standard pytorch geometric format
@@ -693,9 +698,9 @@ if __name__ == '__main__':
     for data_batch in data_loader:
         questionID, questions, gt_scene_graphs, programs, full_answers, short_answer_label, types = data_batch
         print("gt_scene_graphs", gt_scene_graphs)
-        # print("gt_scene_graphs.x", gt_scene_graphs.x)
-        # print("gt_scene_graphs.edge_attr", gt_scene_graphs.edge_attr )
-        # print("gt_scene_graphs.y", gt_scene_graphs.y)
+        print("gt_scene_graphs.x", gt_scene_graphs.x)
+        print("gt_scene_graphs.edge_attr", gt_scene_graphs.edge_attr )
+        print("gt_scene_graphs.y", gt_scene_graphs.y)
         this_batch_size = questions.size(1)
         for batch_idx in range(min(this_batch_size, 128)):
             question = questions[:, batch_idx].cpu()
