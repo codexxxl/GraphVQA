@@ -49,12 +49,12 @@ from gqa_dataset_entry import GQATorchDataset, GQATorchDataset_collate_fn
 from pipeline_model import PipelineModel
 import json
 # GPU settings
-assert torch.cuda.is_available()
+# assert torch.cuda.is_available()
 # os.environ['CUDA_VISIBLE_DEVICES'] = config.GPU
 # device = torch.device("cuda")
 # torch.backends.cudnn.benchmark = True
 # cudnn.benchmark = True
-cuda = torch.device('cuda')     # Default CUDA device
+cuda = torch.device("cuda" if torch.cuda.is_available() else "cpu")    # Default CUDA device
 
 def get_args_parser():
     parser = argparse.ArgumentParser('Explainable GQA Parser', add_help=False)
