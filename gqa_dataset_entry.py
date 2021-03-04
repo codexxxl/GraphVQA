@@ -237,6 +237,7 @@ class GQA_gt_sg_feature_lookup:
         edge_feature_list = []
         # [[from, to], ...]
         edge_topology_list = []
+        added_sym_edge_list = [] # yanhao: record the index of added edges in the edge_feature_list
 
         ##################################
         # Duplicate edges, making sure that the topology is symmetric
@@ -324,7 +325,10 @@ class GQA_gt_sg_feature_lookup:
                     # reverse of [from self as source, to outgoing]
                     edge_topology_list.append([map_objID_to_node_idx[rel["object"]], node_idx])
                     # re-using name of the relationship
-                    edge_feature_list.append(-1*edge_token_arr) # yanhao: use a negation to denote reverse relationships
+                    edge_feature_list.append(edge_token_arr) 
+
+                    # yanhao: record the added edge's index in feature and idx array:
+                    added_sym_edge_list.append(len(edge_feature_list)-1)
 
         ##################################
         # Convert to standard pytorch geometric format
@@ -358,6 +362,11 @@ class GQA_gt_sg_feature_lookup:
         x = torch.from_numpy(node_feature_list_arr).long()
         edge_attr = torch.from_numpy(edge_feature_list_arr).long()
         datum = torch_geometric.data.Data(x=x, edge_index=edge_index.t().contiguous(), edge_attr=edge_attr)
+
+        # yanhao: add an additional variable to datum:
+        added_sym_edge = torch.LongTensor(added_sym_edge_list)
+        datum.added_sym_edge = added_sym_edge
+
 
         return datum
 
@@ -705,6 +714,7 @@ if __name__ == '__main__':
         print("gt_scene_graphs.x", gt_scene_graphs.x)
         print("gt_scene_graphs.edge_attr", gt_scene_graphs.edge_attr )
         print("gt_scene_graphs.y", gt_scene_graphs.y)
+        print("gt_scene_graphs.added_sym_edge", gt_scene_graphs.added_sym_edge)
         this_batch_size = questions.size(1)
         for batch_idx in range(min(this_batch_size, 128)):
             question = questions[:, batch_idx].cpu()

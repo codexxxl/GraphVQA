@@ -583,6 +583,11 @@ class GroundTruth_SceneGraph_Encoder(torch.nn.Module):
         x_embed_sum = torch.sum(input=x_embed, dim=-2, keepdim=False)
         # [ num_edges, MAX_EDGE_TOKEN_LEN] -> [ num_edges, MAX_EDGE_TOKEN_LEN, sg_emb_dim]
         edge_attr_embed = self.sg_vocab_embedding(gt_scene_graphs.edge_attr)
+
+        # yanhao: for the manually added symmetric edges, reverse the sign of emb to denote reverse relationship:
+        edge_attr_embed[gt_scene_graphs.added_sym_edge, :, :] *= -1
+
+
         # [ num_edges, MAX_EDGE_TOKEN_LEN, sg_emb_dim] -> [ num_edges, sg_emb_dim]
         edge_attr_embed_sum   = torch.sum(input=edge_attr_embed, dim=-2, keepdim=False)
         del x_embed, edge_attr_embed
