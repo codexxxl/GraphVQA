@@ -16,15 +16,19 @@ import torch_geometric
 import torchtext
 
 
-ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')
-SCENEGRAPHS = pathlib.Path('/data/weixin/GQA/sceneGraphs/')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
-EXPLAINABLE_GQA_DIR = pathlib.Path('/home/weixin/neuralPoolTest/explainableGQA') 
+# ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')
+# SCENEGRAPHS = pathlib.Path('/data/weixin/GQA/sceneGraphs/')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
+# EXPLAINABLE_GQA_DIR = pathlib.Path('/home/weixin/neuralPoolTest/explainableGQA') 
 
 
 # ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')
 # SCENEGRAPHS = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA/sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
 # EXPLAINABLE_GQA_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA') 
 
+
+ROOT_DIR = Constants.ROOT_DIR
+SCENEGRAPHS = ROOT_DIR.joinpath('explainableGQA', 'sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
+EXPLAINABLE_GQA_DIR = ROOT_DIR.joinpath('explainableGQA') 
 
 SPLIT_TO_H5_PATH_TABLE = {
     'train_unbiased': '/home/ubuntu/GQA/objectDetection/extract/save_train_feature.h5',

@@ -75,12 +75,18 @@ explainableGQA
 
 
 # Fix Data Path
-modify 
+<!-- modify 
 ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files, Constants.py, gqa_dataset_entry.py, preprocess.py
 
 replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
-For the file gqa_dataset_entry.py, replace two additional paths: SCENEGRAPHS and EXPLAINABLE_GQA_DIR with your own sceneGraphs and explainableGQA folder paths.
+For the file gqa_dataset_entry.py, replace two additional paths: SCENEGRAPHS and EXPLAINABLE_GQA_DIR with your own sceneGraphs and explainableGQA folder paths. -->
+
+
+modify 
+ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the file Constants.py.
+
+replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
 # Preprocess Question files:
 ```

@@ -19,7 +19,7 @@ import numpy as np
 import random
 
 
-ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')
+ROOT_DIR = Constants.ROOT_DIR
 # PACKAGE_DIR = ROOT_DIR / 'DialogGQA'
 # GQA_DETR_OD_DIR = PACKAGE_DIR / 'GQAdetrObjectDetection-master'
 # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
