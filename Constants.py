@@ -25,6 +25,7 @@ VISUAL_FEAT = 2048
 BIAS = 1000
 EMB_DIM = 100
 
+
 OBJECT_FUNCS = ['relate', 'relate_inv', 'relate_name', 'relate_inv_name', 'select', 'relate_attr', 'filter', 'filter_not', 'filter_h']
 STRING_FUNCS = ['query_n', 'query_h', 'query', 'query_f', 'choose_n', 'choose_f', 'choose', 'choose_attr', 'choose_h', 'choose_v', 'choose_rel_inv', 'choose_subj', 'common']
 BINARY_FUNCS = ['verify', 'verify_f', 'verify_h', 'verify_v', 'verify_rel', 'verify_rel_inv', 'exist', 'or', 'and', 'different', 'same', 'same_attr', 'different_attr']
