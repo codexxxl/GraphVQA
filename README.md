@@ -1,5 +1,12 @@
 **Explainable GQA**: Explainable and Transparent GQA framework 
 ========
+
+跑graph那部分的code(model 的code):
+有两个部分，torch_geometric的部分在pipeline_model.py ； 还有一个rule based 的encode scene graph的，就是生成input tensor的，在gqa_dataset_entry.py
+
+Model checkpoint on Feb 20, 2021: https://drive.google.com/drive/folders/1zHuUG-qOfOX93iB3e3WgmcAgEfFK3Dru?usp=sharing
+
+
 PyTorch training code and pretrained models for Explainable GQA. 
 
 This repo is built from scratch. 
@@ -68,8 +75,16 @@ explainableGQA
 
 
 # Fix Data Path
-modify 
+<!-- modify 
 ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files, Constants.py, gqa_dataset_entry.py, preprocess.py
+
+replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
+
+For the file gqa_dataset_entry.py, replace two additional paths: SCENEGRAPHS and EXPLAINABLE_GQA_DIR with your own sceneGraphs and explainableGQA folder paths. -->
+
+
+modify 
+ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the file Constants.py.
 
 replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
 
