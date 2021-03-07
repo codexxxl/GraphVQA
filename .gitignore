@@ -3,9 +3,9 @@ __pycache__/
 .vector_cache/
 models/
 questions/original/
+questions/*.json
 sceneGraphs/
 *.tar
 *.log
 *.pth
 *.h5
-*.json
