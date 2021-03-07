@@ -1,0 +1,222 @@
+{
+    "color": [
+        "beige",
+        "black",
+        "blond",
+        "blue",
+        "brown",
+        "brunette",
+        "cream colored",
+        "dark",
+        "dark blue",
+        "dark brown",
+        "gold",
+        "gray",
+        "green",
+        "khaki",
+        "light blue",
+        "light brown",
+        "maroon",
+        "orange",
+        "pink",
+        "purple",
+        "red",
+        "silver",
+        "tan",
+        "teal",
+        "white",
+        "yellow"
+    ],
+    "pose": [
+        "bending",
+        "brushing tooth",
+        "crouching",
+        "jumping",
+        "lying",
+        "making a face",
+        "pointing",
+        "running",
+        "shaking hand",
+        "sitting",
+        "standing",
+        "taking a photo",
+        "taking a picture",
+        "taking picture",
+        "walking"
+    ],
+    "material": [
+        "brick",
+        "concrete",
+        "glass",
+        "leather",
+        "metal",
+        "plastic",
+        "porcelain",
+        "wood"
+    ],
+    "activity": [
+        "brushing tooth",
+        "cooking",
+        "drinking",
+        "driving",
+        "eating",
+        "looking down",
+        "looking up",
+        "playing",
+        "posing",
+        "reading",
+        "resting",
+        "sleeping",
+        "staring",
+        "talking",
+        "waiting"
+    ],
+    "weather": [
+        "clear",
+        "cloudless",
+        "cloudy",
+        "foggy",
+        "overcast",
+        "partly cloudy",
+        "rainy",
+        "stormy",
+        "sunny"
+    ],
+    "size": [
+        "giant",
+        "huge",
+        "large",
+        "little",
+        "small",
+        "tiny"
+    ],
+    "fatness": [
+        "fat",
+        "skinny",
+        "thin"
+    ],
+    "gender": [
+        "female",
+        "male"
+    ],
+    "height": [
+        "short",
+        "tall"
+    ],
+    "state": [
+        "calm",
+        "choppy",
+        "rough",
+        "smooth",
+        "still",
+        "wavy"
+    ],
+    "hposition": [
+        "left",
+        "right"
+    ],
+    "length": [
+        "long",
+        "short"
+    ],
+    "shape": [
+        "octagonal",
+        "rectangular",
+        "round",
+        "square",
+        "triangular"
+    ],
+    "pattern": [
+        "checkered",
+        "dotted",
+        "striped"
+    ],
+    "thickness": [
+        "thick",
+        "thin"
+    ],
+    "age": [
+        "little",
+        "old",
+        "young"
+    ],
+    "tone": [
+        "light",
+        "dark"
+    ],
+    "room": [
+        "attic",
+        "bathroom",
+        "bedroom",
+        "dining room",
+        "kitchen",
+        "living room",
+        "office"
+    ],
+    "width": [
+        "narrow",
+        "wide"
+    ],
+    "depth": [
+        "deep",
+        "shallow"
+    ],
+    "cleanliness": [
+        "clean",
+        "dirty",
+        "stained",
+        "tinted"
+    ],
+    "hardness": [
+        "hard",
+        "soft"
+    ],
+    "race": [
+        "asian",
+        "caucasian"
+    ],
+    "company": [
+        "adida",
+        "nike"
+    ],
+    "sportActivity": [
+        "performing trick",
+        "riding",
+        "skateboarding",
+        "skating",
+        "skiing",
+        "snowboarding",
+        "surfing",
+        "swimming"
+    ],
+    "sportactivity": [
+        "performing trick",
+        "riding",
+        "skateboarding",
+        "skating",
+        "skiing",
+        "snowboarding",
+        "surfing",
+        "swimming"
+    ],
+    "weight": [
+        "heavy",
+        "light"
+    ],
+    "texture": [
+        "coarse",
+        "fine"
+    ],
+    "flavor": [
+        "chocolate",
+        "strawberry",
+        "vanilla"
+    ],
+    "realism": [
+        "fake",
+        "real"
+    ],
+    "face expression": [
+        "making a face"
+    ]
+}
