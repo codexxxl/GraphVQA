@@ -157,3 +157,9 @@ The script will return
 It means that for those questions, whose answer is inside the scene graph, the accuracy is 96%. There are 4% of questions without answers inside the scene graph, therefore the overall accuracy is 92.3%. This is good enough as a symbolic teacher to teach the meta module network to reason.
 
 
+## Meta Data Sources
+https://github.com/microsoft/DFOL-VQA
+
+http://ronghanghu.com/lcgn
+
+https://github.com/wenhuchen/Meta-Module-Network
