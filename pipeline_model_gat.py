@@ -684,7 +684,7 @@ class PipelineModel(torch.nn.Module):
                  out_channels=self.scene_graph_encoder.sg_emb_dim, 
                  edge_attr_dim=self.scene_graph_encoder.sg_emb_dim, 
                  ins_dim=self.question_hidden_dim, num_ins=5,
-                 dropout=0.2, gat_heads=4, gat_negative_slope=0.2, gat_bias=True) # the drop-out is for both dropout in between GATs and dropout inside the GATs
+                 dropout=0.1, gat_heads=4, gat_negative_slope=0.2, gat_bias=True) # the drop-out is for both dropout in between GATs and dropout inside the GATs
 
 
 
