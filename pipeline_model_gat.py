@@ -13,7 +13,7 @@ from gqa_dataset_entry import GQATorchDataset
 
 from graph_utils import my_graph_layernorm
 
-from gat import gat
+from gat import gat_seq
 """
 Graph Meta Layer, Example funciton
 """
@@ -674,11 +674,17 @@ class PipelineModel(torch.nn.Module):
         # input to the gat_seq would be: 
         # 1. concat(h_prev, x_orig), where h_prev is the previous GAT layer's output and x_orig is the original encoded node features
         # 2. concat(edge_attr, ins_i), concat of edge_attr and i_th step instruction vector
-        self.gat_seq = gat(in_channels=self.scene_graph_encoder.sg_emb_dim*2,
-                 out_channels=self.scene_graph_encoder.sg_emb_dim, 
-                 edge_in_channels=self.scene_graph_encoder.sg_emb_dim+self.question_hidden_dim, 
-                 heads= 1, concat=False, negative_slope= 0.2, dropout= 0.0, bias= True)
+        # self.gat_seq = gat(in_channels=self.scene_graph_encoder.sg_emb_dim*2,
+        #          out_channels=self.scene_graph_encoder.sg_emb_dim, 
+        #          edge_in_channels=self.scene_graph_encoder.sg_emb_dim+self.question_hidden_dim, 
+        #          heads= 4, concat=False, negative_slope= 0.2, dropout= 0.0, bias= True)
 
+
+        self.gat_seq = gat_seq(in_channels=self.scene_graph_encoder.sg_emb_dim,
+                 out_channels=self.scene_graph_encoder.sg_emb_dim, 
+                 edge_attr_dim=self.scene_graph_encoder.sg_emb_dim, 
+                 ins_dim=self.question_hidden_dim, num_ins=5,
+                 dropout=0.0, gat_heads=4, gat_negative_slope=0.2, gat_bias=True)
 
 
 
@@ -770,14 +776,19 @@ class PipelineModel(torch.nn.Module):
         #     batch=gt_scene_graphs.batch,
         # )
 
-        print("inst: shape", instr_vectors.shape)
+        # print("inst: shape", instr_vectors.shape)
+        # ins = instr_vectors[0] # shape: batch_size X instruction_dim
+        # edge_batch = gt_scene_graphs.batch[gt_scene_graphs.edge_index[0]] # find out which batch the edge belongs to
+        # repeated_ins = torch.zeros((gt_scene_graphs.edge_index.shape[1], ins.shape[-1])) # shape: num_edges x instruction_dim
+        # repeated_ins = ins[edge_batch] # pick correct batched instruction for each edge
 
-        x_cat = torch.cat( (x_encoded, x_encoded), dim=-1)
-        
 
-        x_executed = self.gat_seq(x=x_cat, edge_index=gt_scene_graphs.edge_index, edge_attr=edge_attr_encoded)
+        # edge_cat = torch.cat( (edge_attr_encoded, repeated_ins.to(edge_attr_encoded.device)), dim=-1) # shape: num_edges X  encode_dim+instruction_dim
+        # x_cat = torch.cat( (x_encoded, x_encoded), dim=-1)
 
+        # x_executed = self.gat_seq(x=x_cat, edge_index=gt_scene_graphs.edge_index, edge_attr=edge_cat)
 
+        x_executed = self.gat_seq(x=x_encoded, edge_index=gt_scene_graphs.edge_index, edge_attr=edge_attr_encoded, instr_vectors=instr_vectors, batch=gt_scene_graphs.batch)
         
 
 
@@ -807,7 +818,7 @@ class PipelineModel(torch.nn.Module):
 
 
 
-        return short_answer_logits
+        return programs_output, short_answer_logits
 
     def load_state_dict(self, state_dict, strict=True):
         model_dict = self.state_dict()

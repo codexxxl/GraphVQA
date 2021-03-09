@@ -214,3 +214,62 @@ class gat(MessagePassing):
 
 
 
+
+
+
+class gat_seq(torch.nn.Module):
+    """
+    excute a sequence of GAT conv, BN, ReLU, and dropout layers for each instruction vector ins
+    """
+    def __init__(self, in_channels, out_channels, edge_attr_dim, ins_dim, num_ins,
+                 dropout=0.0, gat_heads=4, gat_negative_slope=0.2, gat_bias=True):
+
+        super(gat_seq, self).__init__()
+
+        # 5 layers of conv with  BN, ReLU, and Dropout in between
+        self.convs = torch.nn.ModuleList([gat(in_channels=in_channels*2, out_channels=out_channels, # input is x and h concat
+                 edge_in_channels=edge_attr_dim+ins_dim, # edge feature is edge_attr and instruction concat
+                 heads=gat_heads, concat=False, negative_slope=gat_negative_slope, dropout=dropout, bias=gat_bias) for _ in range(num_ins)])
+
+        # for the last output, no batch norm
+        self.bns = torch.nn.ModuleList([torch.nn.BatchNorm1d(out_channels) for _ in range(num_ins-1)]) 
+
+        self.dropout = dropout
+
+
+    def reset_parameters(self):
+        for conv in self.convs:
+            conv.reset_parameters()
+        for bn in self.bns:
+            bn.reset_parameters()
+
+
+
+
+    def forward(self, x, edge_index, edge_attr, instr_vectors, batch):
+
+        num_conv_layers = len(self.convs)
+
+        h = x
+        for i in range(num_conv_layers):
+          # concat the inputs:
+            ins = instr_vectors[i] # shape: batch_size X instruction_dim
+            edge_batch = batch[edge_index[0]] # find out which batch the edge belongs to
+            repeated_ins = torch.zeros((edge_index.shape[1], ins.shape[-1])) # shape: num_edges x instruction_dim
+            repeated_ins = ins[edge_batch] # pick correct batched instruction for each edge
+
+            edge_cat = torch.cat((edge_attr, repeated_ins.to(edge_attr.device)), dim=-1) # shape: num_edges X  encode_dim+instruction_dim
+            x_cat = torch.cat((x, h), dim=-1) # concat the original x with the previous hidden layer output
+
+            # feed into the GAT:
+            h = self.convs[i](x=x_cat, edge_index=edge_index, edge_attr=edge_cat)
+
+            # do BN, ReLU, Droupout in-between all conv layers
+            if i != num_conv_layers-1:
+                h = self.bns[i](h)
+                h = F.relu(h)
+                h = F.dropout(h, p=self.dropout, training=self.training)
+
+
+        return h # return the last layer's hidden rep.
+
