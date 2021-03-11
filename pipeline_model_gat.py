@@ -13,7 +13,7 @@ from gqa_dataset_entry import GQATorchDataset
 
 from graph_utils import my_graph_layernorm
 
-from gat import gat_seq
+from gat_skip import gat_seq # use second version of gat
 """
 Graph Meta Layer, Example funciton
 """
