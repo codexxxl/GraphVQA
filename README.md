@@ -16,6 +16,11 @@ Assuming that the scene graph is give.
 The repo contains 4 modules: semantic parser, scene graph encoding, neural execution module, natural language generation module. 
 
 
+# Model files:
+1. RNN+GCN: pipeline_model.py, mainExplain.py
+2. simple GCN: pipeline_model_gcn.py, mainExplain_gcn.py
+2. GAT: gat.py(version 1), gat_skip.py(version 2), pipeline_model_gat.py mainExplain_gat.py
+
 
 # Install torchtext, spacy
 ```
