@@ -1,8 +1,6 @@
 **Explainable GQA**: Explainable and Transparent GQA framework 
 ========
 
-跑graph那部分的code(model 的code):
-有两个部分，torch_geometric的部分在pipeline_model.py ； 还有一个rule based 的encode scene graph的，就是生成input tensor的，在gqa_dataset_entry.py
 
 Model checkpoint on Feb 20, 2021: https://drive.google.com/drive/folders/1zHuUG-qOfOX93iB3e3WgmcAgEfFK3Dru?usp=sharing
 
@@ -17,9 +15,10 @@ The repo contains 4 modules: semantic parser, scene graph encoding, neural execu
 
 
 # Model files:
-1. RNN+GCN: pipeline_model.py, mainExplain.py
-2. simple GCN: pipeline_model_gcn.py, mainExplain_gcn.py
-2. GAT: gat.py(version 1), gat_skip.py(version 2), pipeline_model_gat.py mainExplain_gat.py
+1. simple GCN: pipeline_model_gcn.py, mainExplain_gcn.py
+2. Recurrent GCN: pipeline_model.py, mainExplain.py
+3. GAT: gat.py(version 1), gat_skip.py(version 2), pipeline_model_gat.py mainExplain_gat.py
+4. LGRAN: lcgn.py, mainExplain_lcgn.py, pipeline_model_lcgn.py
 
 
 # Install torchtext, spacy
@@ -118,6 +117,11 @@ CUDA_VISIBLE_DEVICES=0,1,2,7 python -m torch.distributed.launch --nproc_per_node
 Kill Distributed:
 kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')
 
+For all models:
+1. simple GCN: run mainExplain_gcn.py instead
+2. Recurrent GCN: run mainExplain.py instead
+3. GAT: run mainExplain_gat.py instead
+4. LGRAN: run mainExplain_lcgn.py instead
 ```
 
 
