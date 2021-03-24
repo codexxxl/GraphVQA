@@ -620,12 +620,12 @@ sequence of 5 GCN layers, takes in node features only and ouput the last layer's
 """
 
 class gcn_seq(torch.nn.Module):
-    def __init__(self, in_channels, out_channels, dropout=0.0):
+    def __init__(self, in_channels, out_channels, ins_dim, dropout=0.0):
 
         super(gcn_seq, self).__init__()
 
         # 5 layers of conv with  BN, ReLU, and Dropout in between
-        self.convs = torch.nn.ModuleList([GCNConv(in_channels, out_channels) for _ in range(5)])
+        self.convs = torch.nn.ModuleList([GCNConv(in_channels+ins_dim, out_channels) for _ in range(5)])
 
         # for the last output, no batch norm
         self.bns = torch.nn.ModuleList([torch.nn.BatchNorm1d(out_channels) for _ in range(5-1)]) 
@@ -642,15 +642,22 @@ class gcn_seq(torch.nn.Module):
 
 
 
-    def forward(self, x, edge_index):
+    def forward(self, x, edge_index, instr_vectors, batch):
 
         num_conv_layers = len(self.convs)
 
         h = x
         for i in range(num_conv_layers):
 
+            # concat the inputs:
+            ins = instr_vectors[i] # shape: batch_size X instruction_dim
+
+            repeated_ins_node = ins[batch] # pick correct batched instruction for each node
+            x_cat = torch.cat((h, repeated_ins_node), dim=-1) # concat the previous layer node hidden rep with the instruction vector
+
+
             # feed into the conv:
-            conv_res = self.convs[i](x=h, edge_index=edge_index)
+            conv_res = self.convs[i](x=x_cat, edge_index=edge_index)
 
             # do BN, ReLU, Droupout in-between all conv layers
             if i != num_conv_layers-1:
@@ -741,7 +748,7 @@ class PipelineModel(torch.nn.Module):
 
         # graph excution
         self.gcn_seq = gcn_seq(in_channels=self.scene_graph_encoder.sg_emb_dim, 
-                out_channels=self.scene_graph_encoder.sg_emb_dim,
+                out_channels=self.scene_graph_encoder.sg_emb_dim, ins_dim=self.question_hidden_dim,
                 dropout=0.1)
 
 
@@ -845,7 +852,7 @@ class PipelineModel(torch.nn.Module):
         # x_executed = self.gat_seq(x=x_cat, edge_index=gt_scene_graphs.edge_index, edge_attr=edge_cat)
 
         # excute the 5 layers of GCN using node features
-        x_executed = self.gcn_seq(x=x_encoded, edge_index=gt_scene_graphs.edge_index)
+        x_executed = self.gcn_seq(x=x_encoded, edge_index=gt_scene_graphs.edge_index, instr_vectors=instr_vectors, batch=gt_scene_graphs.batch)
 
 
         ##################################
