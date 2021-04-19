@@ -1,27 +1,32 @@
-**Explainable GQA**: Explainable and Transparent GQA framework 
-========
+# GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering
 
 
-Model checkpoint on Feb 20, 2021: https://drive.google.com/drive/folders/1zHuUG-qOfOX93iB3e3WgmcAgEfFK3Dru?usp=sharing
+This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering]() (NAACL 2021).
+```
+@InProceedings{2021graphvqa,
+  author =  {Weixin Liang and Yanhao Jiang and Antoine Bosselut and Zixuan Liu},
+  title =   {GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering},
+  year =    {2021},  
+  booktitle = {North American Chapter of the Association for Computational Linguistics (NAACL)},  
+}
+```
 
 
-PyTorch training code and pretrained models for Explainable GQA. 
-
-This repo is built from scratch. 
-
-This is the folder for phase 1 development. 
-Assuming that the scene graph is give. 
-The repo contains 4 modules: semantic parser, scene graph encoding, neural execution module, natural language generation module. 
-
-
-# Model files:
-1. simple GCN: pipeline_model_gcn.py, mainExplain_gcn.py
-2. Recurrent GCN: pipeline_model.py, mainExplain.py
-3. GAT: gat.py(version 1), gat_skip.py(version 2), pipeline_model_gat.py mainExplain_gat.py
-4. LGRAN: lcgn.py, mainExplain_lcgn.py, pipeline_model_lcgn.py
+<p align="center">
+  <img src="./figs/graphVQA_overview.jpg" width="1000" title="Overview of Visual Question Answering with Scene Graphs" alt="">
+</p>
+<p align="center">
+  <img src="./figs/graphVQA_framework.jpg" width="1000" title="Structure of GraphVQA framework" alt="">
+</p>
 
 
-# Install torchtext, spacy
+## Usage
+### 0. Dependencies
+
+create a conda environment with Python version = 3.6
+
+#### 0.1. Install torchtext, spacy
+Run following commands in created conda environment
 ```
 conda install -c pytorch torchtext
 conda install -c conda-forge spacy
@@ -29,19 +34,18 @@ conda install -c conda-forge cupy
 python -m spacy download en_core_web_sm
 conda install -c anaconda nltk
 ```
-also need to python and run: 
 
-
+Excute python and run following:
 ```
 import nltk
 nltk.download('wordnet')
 ```
 
-# Install PyTorch Geometric
+#### 0.2. Install PyTorch Geometric
+Following link below to install PyTorch Geometric via binaries.
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html#installation-via-binaries
 
-
-## My command with torch-1.4.0+cu100. Replace with your versions. 
+Example installation commands with torch-1.4.0+cu100 are following. (Note you need to replace PyTorch and CUDA fields with your own installed versions.)
 ```
 pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
@@ -51,17 +55,15 @@ pip install torch-geometric
 ```
 
 
+### 1. Download Data
 
+Download scene graphs raw data from: 
+https://nlp.stanford.edu/data/gqa/sceneGraphs.zip
+Download questions raw data from: 
+https://nlp.stanford.edu/data/gqa/questions1.2.zip
 
-# Prepare data
-
-Download scene graphs: https://nlp.stanford.edu/data/gqa/sceneGraphs.zip
-Download questions: https://nlp.stanford.edu/data/gqa/questions1.2.zip
-
-
-put sceneGraph json files into sceneGraphs/
-put questions json files into questions/original/ 
-
+Put sceneGraph json files into ```sceneGraphs/```
+Put questions json files into ```questions/original/```
 
 After this step, the file structure should look like
 ```
@@ -78,97 +80,50 @@ explainableGQA
 ```
 
 
-# Fix Data Path
-<!-- modify 
-ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the following 3 files, Constants.py, gqa_dataset_entry.py, preprocess.py
 
-replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
+### 2. Modify Root Directory
+Replace line 13 in Constants.py with your own root directory that contains this source code folder:
+```ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')```
 
-For the file gqa_dataset_entry.py, replace two additional paths: SCENEGRAPHS and EXPLAINABLE_GQA_DIR with your own sceneGraphs and explainableGQA folder paths. -->
+For example, if my source code folder is 
+`/home/weixin/neuralPoolTest/explainableGQA `
+I can replace ROOT_DIR with the following path (Note without the folder name 'explainableGQA'):
+```ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')```
 
 
-modify 
-ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/') in the file Constants.py.
-
-replace with your own root path. Here my folder is '/home/weixin/neuralPoolTest/explainableGQA' so I use '/home/weixin/neuralPoolTest' without 'explainableGQA'
-
-# Preprocess Question files:
+### 3. Preprocess Question Files (just need to run once)
+run command
 ```
 python preprocess.py
 ```
 
-
-# Testing the installation
+### 4. Test Installations and Data Preparations
+Following commands should run without error:
 ```
-python pipeline_model.py 
+python pipeline_model_gat.py 
 python gqa_dataset_entry.py 
 ```
 
 
 
-# Train
-```
+### 5. Training 
+
+#### 5.1. Main Model: GraphVQA-GAT 
 Single GPU training: 
-CUDA_VISIBLE_DEVICES=2 python mainExplain.py --log-name debug.log && echo 'Ground Truth Scene Graph Debug'
+```CUDA_VISIBLE_DEVICES=0 python mainExplain_gat.py --log-name debug.log ```
 
-Distributed Training:
-CUDA_VISIBLE_DEVICES=0,1,2,7 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain.py
+Distributed training:
+```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=200 --lr_drop=90```
 
-Kill Distributed:
-kill $(ps aux | grep mainExplain.py | grep -v grep | awk '{print $2}')
-
-For all models:
-1. simple GCN: run mainExplain_gcn.py instead
-2. Recurrent GCN: run mainExplain.py instead
-3. GAT: run mainExplain_gat.py instead
-4. LGRAN: run mainExplain_lcgn.py instead
-```
+To kill a distributed training:
+```kill $(ps aux | grep mainExplain_gat.py | grep -v grep | awk '{print $2}')```
 
 
-# Bonus 1: Run the LCGN baseline, 90.23% Accuracy on val_balanced
+#### 5.2. Baseline and Test Models
+Baseline and other test models are trained in similar ways with corresponding `mainExplain_{lcgn, gcn, gine}.py` file excuted. Their files are appended under folder `\baseline_and_test_models`. (Note move them out of this folder to train).
+Corresponding to GraphVQA-GAT's model and training files: `gat_skip.py`, `pipeline_model_gat.py`, and `mainExplain_gat.py`, baseline model files are:
 
+1. Baseline LCGN: `lcgn.py`, `mainExplain_lcgn.py`, `pipeline_model_lcgn.py`
+2. GraphVQA-GCN: `pipeline_model_gcn.py`, `mainExplain_gcn.py`
+3. GraphVQA-GINE: `pipeline_model_gine.py`, `mainExplain_gine.py`
 
-https://github.com/ronghanghu/lcgn/tree/pytorch
-
-
-* R. Hu, A. Rohrbach, T. Darrell, K. Saenko, *Language-Conditioned Graph Networks for Relational Reasoning*. in ICCV 2019 ([PDF](https://arxiv.org/pdf/1905.04405.pdf))
-```
-@inproceedings{hu2019language,
-  title={Language-Conditioned Graph Networks for Relational Reasoning},
-  author={Hu, Ronghang and Rohrbach, Anna and Darrell, Trevor and Saenko, Kate},
-  booktitle={Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
-  year={2019}
-}
-```
-
-Project Page: http://ronghanghu.com/lcgn
-
-**This is the (original) TensorFlow implementation of LCGN. A PyTorch implementation is available in the [PyTorch branch](https://github.com/ronghanghu/lcgn/tree/pytorch).**
-
-
-
-# Bonus 2: Run the Symbolic Execution baseline
-WACV 2021 Paper "Meta Module Network for Compositional Visual Reasoning"
-
-
-The symbolic execution for the visual question answering.
-
-
-## Symbolic Execution
-We can run the run.py to perform symbolic execution on the GQA provided scene graph to get the answer.
-  ```
-    python run.py --do_trainval_unbiased
-  ```
-The script will return 
-  ```
-  success rate (ALL) = 0.923610917323838, success rate (VALID) = 0.9605288360151759, valid/invalid = 1033742/41320
-  ```
-It means that for those questions, whose answer is inside the scene graph, the accuracy is 96%. There are 4% of questions without answers inside the scene graph, therefore the overall accuracy is 92.3%. This is good enough as a symbolic teacher to teach the meta module network to reason.
-
-
-## Meta Data Sources
-https://github.com/microsoft/DFOL-VQA
-
-http://ronghanghu.com/lcgn
-
-https://github.com/wenhuchen/Meta-Module-Network
