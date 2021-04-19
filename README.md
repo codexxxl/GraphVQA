@@ -83,8 +83,7 @@ explainableGQA
 
 
 ### 2. Modify Root Directory
-Replace `line 13` in `Constants.py` with your own root directory that contains this source code folder:
-
+Replace `line 13` in `Constants.py` with your own root directory that contains this source code folder:  
 ```ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')```
 
 For example, if my source code folder is `/home/weixin/neuralPoolTest/explainableGQA `, I can replace `ROOT_DIR` with the following path (Note without the folder name `explainableGQA`):
@@ -109,21 +108,18 @@ python gqa_dataset_entry.py
 ### 5. Training 
 
 #### 5.1. Main Model: GraphVQA-GAT 
-Single GPU training: 
-
+Single GPU training:  
 ```CUDA_VISIBLE_DEVICES=0 python mainExplain_gat.py --log-name debug.log ```
 
-Distributed training:
-
+Distributed training:  
 ```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=200 --lr_drop=90```
 
-To kill a distributed training:
-
+To kill a distributed training:  
 ```kill $(ps aux | grep mainExplain_gat.py | grep -v grep | awk '{print $2}')```
 
 
 #### 5.2. Baseline and Test Models
-Baseline and other test models are trained in similar ways with corresponding `mainExplain_{lcgn, gcn, gine}.py` file excuted. Their related files are appended in `\baseline_and_test_models`. (Note move them out of this folder to train).
+Baseline and other test models are trained in similar ways with corresponding `mainExplain_{lcgn, gcn, gine}.py` file excuted. Their related files are appended in `\baseline_and_test_models`. (Note move them out of this folder to train).  
 Corresponding to GraphVQA-GAT's model and training files: `gat_skip.py`, `pipeline_model_gat.py`, and `mainExplain_gat.py`, those model files are:
 
 1. Baseline LCGN: `lcgn.py`, `pipeline_model_lcgn.py`, `mainExplain_lcgn.py`
