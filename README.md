@@ -58,14 +58,13 @@ pip install torch-geometric
 ### 1. Download Data
 
 Download scene graphs raw data from: 
-https://nlp.stanford.edu/data/gqa/sceneGraphs.zip
-
+https://nlp.stanford.edu/data/gqa/sceneGraphs.zip  
 Download questions raw data from: 
 https://nlp.stanford.edu/data/gqa/questions1.2.zip
 
-Put sceneGraph json files into `sceneGraphs/`
+Put sceneGraph json files: `train_sceneGraphs.json`, `val_sceneGraphs.json` into `sceneGraphs/`
 
-Put questions json files into `questions/original/`
+Put questions json files: `train_balanced_questions.json`, `val_balanced_questions.json`, `test_balanced_questions.json`, `testdev_balanced_questions.json` into `questions/original/`
 
 After this step, the data file structure should look like this:
 ```
