@@ -7,7 +7,7 @@ This repo provides the source code of our paper: [GraphVQA: Language-Guided Grap
   author =  {Weixin Liang and Yanhao Jiang and Zixuan Liu},
   title =   {GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering},
   year =    {2021},  
-  booktitle = {North American Chapter of the Association for Computational Linguistics (NAACL)},  
+  booktitle = {North American Chapter of the Association for Computational Linguistics (NAACL) Workshop on Multimodal Artificial Intelligence (MAI-Workshop)},  
 }
 ```
 
@@ -42,10 +42,10 @@ nltk.download('wordnet')
 ```
 
 #### 0.2. Install PyTorch Geometric
-Follow link below to install PyTorch Geometric via binaries: 
+Follow the link below to install PyTorch Geometric via binaries: 
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html#installation-via-binaries
 
-Example installation commands with `PyTorch 1.4.0` and `CUDA 10.0` are following. (Note you need to replace `torch-1.4.0+cu100` field with your own installed `PyTorch` and `CUDA` versions.)
+Example installation commands with `PyTorch 1.4.0` and `CUDA 10.0`: (Note you need to replace `torch-1.4.0+cu100` field with your own installed `PyTorch` and `CUDA` versions.)
 ```
 pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
 pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.4.0+cu100.html
@@ -88,16 +88,12 @@ Replace `line 13` in `Constants.py` with your own root directory that contains t
 
 ```ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')```
 
-For example, if my source code folder is 
-`/home/weixin/neuralPoolTest/explainableGQA `
-
-I can replace `ROOT_DIR` with the following path (Note without the folder name 'explainableGQA'):
-
+For example, if my source code folder is `/home/weixin/neuralPoolTest/explainableGQA `, I can replace `ROOT_DIR` with the following path (Note without the folder name `explainableGQA`):
 ```ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')```
 
 
 ### 3. Preprocess Question Files (just need to run once)
-run command
+Run command
 ```
 python preprocess.py
 ```
@@ -128,8 +124,8 @@ To kill a distributed training:
 
 
 #### 5.2. Baseline and Test Models
-Baseline and other test models are trained in similar ways with corresponding `mainExplain_{lcgn, gcn, gine}.py` file excuted. Their files are appended under folder `\baseline_and_test_models`. (Note move them out of this folder to train).
-Corresponding to GraphVQA-GAT's model and training files: `gat_skip.py`, `pipeline_model_gat.py`, and `mainExplain_gat.py`, baseline model files are:
+Baseline and other test models are trained in similar ways with corresponding `mainExplain_{lcgn, gcn, gine}.py` file excuted. Their related files are appended in `\baseline_and_test_models`. (Note move them out of this folder to train).
+Corresponding to GraphVQA-GAT's model and training files: `gat_skip.py`, `pipeline_model_gat.py`, and `mainExplain_gat.py`, those model files are:
 
 1. Baseline LCGN: `lcgn.py`, `pipeline_model_lcgn.py`, `mainExplain_lcgn.py`
 2. GraphVQA-GCN: `pipeline_model_gcn.py`, `mainExplain_gcn.py`
