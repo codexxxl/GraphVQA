@@ -23,10 +23,10 @@ This repo provides the source code of our paper: [GraphVQA: Language-Guided Grap
 ## Usage
 ### 0. Dependencies
 
-Create a conda environment with Python version = 3.6
+Create a `conda` environment with `python` version = 3.6
 
 #### 0.1. Install torchtext, spacy
-Run following commands in the created conda environment
+Run following commands in the created `conda` environment
 ```
 conda install -c pytorch torchtext
 conda install -c conda-forge spacy
@@ -35,14 +35,14 @@ python -m spacy download en_core_web_sm
 conda install -c anaconda nltk
 ```
 
-Excute python and run following:
+Excute `python` and run following:
 ```
 import nltk
 nltk.download('wordnet')
 ```
 
 #### 0.2. Install PyTorch Geometric
-Follow link below to install PyTorch Geometric via binaries.
+Follow link below to install PyTorch Geometric via binaries: 
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html#installation-via-binaries
 
 Example installation commands with `PyTorch 1.4.0` and `CUDA 10.0` are following. (Note you need to replace `torch-1.4.0+cu100` field with your own installed `PyTorch` and `CUDA` versions.)
@@ -91,7 +91,7 @@ Replace `line 13` in `Constants.py` with your own root directory that contains t
 For example, if my source code folder is 
 `/home/weixin/neuralPoolTest/explainableGQA `
 
-I can replace ROOT_DIR with the following path (Note without the folder name 'explainableGQA'):
+I can replace `ROOT_DIR` with the following path (Note without the folder name 'explainableGQA'):
 
 ```ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')```
 
