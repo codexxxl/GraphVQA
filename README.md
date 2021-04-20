@@ -134,6 +134,8 @@ Step 1: Generate evaluation dataset
 To evaluate your model, there are two options:
 1. Use validation_balanced set of programs.
 2. Use validation_all set provided by GQA official.
+
+
 Option 1: Since after running Step 3(preprocess.py), we already have 
 GraphVQA
     questions/
