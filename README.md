@@ -128,14 +128,14 @@ Corresponding to GraphVQA-GAT's model and training files: `gat_skip.py`, `pipeli
 
 
 ### 6. Evaluation
-#### 6.1 Data Preparation
+
 We re-organize the evaluation script provided by GQA official, the original script and evaluation data can be found at https://cs.stanford.edu/people/dorarad/gqa/evaluate.html
 Step 1: Generate evaluation dataset
 To evaluate your model, there are two options:
 1. Use validation_balanced set of programs.
 2. Use validation_all set provided by GQA official.
 
-
+#### 6.1 Data Preparation
 First download evaluation data from: https://nlp.stanford.edu/data/gqa/eval.zip.
 then unzip the file and move val_all_question.json to `expainableGQA/questions/original/`
 now we will have 
@@ -145,6 +145,7 @@ GraphVQA
         original/
             val_all_questions.json
 ```
+#### 6.2 Evaluation
 Option 1: Since after running Step 3(preprocess.py), we already have 
 ```
 GraphVQA
@@ -153,14 +154,18 @@ GraphVQA
 ```
 
 then, run commands
-```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_unbiased'```
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_unbiased'
+```
 you should get results json file located in './your_outputdir/dump_result.json'
 
 then, run ```python eval.py --predictions=./your_outputdir/dump_results.json --consistency```
 
 
 Option 2: If you want to use validation_all set, then, run commands 
-```python preprocess.py --val-all=True```
+```
+python preprocess.py --val-all=True
+```
 we should get 
 ```
 GraphVQA
@@ -169,9 +174,14 @@ GraphVQA
 ```
 
 then, run commands
-```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_all'```
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_all'
+```
 you should get results json file located in './your_outputdir/dump_results.json'
 
-then, run ```python eval.py --predictions=./your_outputdir/dump_results.json --consistency```
+then, run 
+```
+python eval.py --predictions=./your_outputdir/dump_results.json --consistency
+```
 
   
