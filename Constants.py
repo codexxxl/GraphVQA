@@ -90,22 +90,22 @@ for k, v in SCENE_ONTOLOGY.items():
         else:
             SCENE_ATTRIBUTES[item] = [(SCENE_ATTR.index(k), i)]
 
-# with open(ROOT_DIR / 'explainableGQA/meta_info/GQA_hypernym.json') as f:
+# with open(ROOT_DIR / 'GraphVQA/meta_info/GQA_hypernym.json') as f:
 #     hypernym = json.load(f)
 
-with open(ROOT_DIR / 'explainableGQA/meta_info/objects.json') as f:
+with open(ROOT_DIR / 'GraphVQA/meta_info/objects.json') as f:
     OBJECTS_INV = json.load(f)
     OBJECTS = {k: i for i, k in enumerate(OBJECTS_INV)}
 
-with open(ROOT_DIR / 'explainableGQA/meta_info/predicates.json') as f:
+with open(ROOT_DIR / 'GraphVQA/meta_info/predicates.json') as f:
     RELATIONS_INV = json.load(f)
     RELATIONS = {k: i for i, k in enumerate(RELATIONS_INV)}
 
-with open(ROOT_DIR / 'explainableGQA/meta_info/attributes.json') as f:
+with open(ROOT_DIR / 'GraphVQA/meta_info/attributes.json') as f:
     ATTRIBUTES_INV = json.load(f)
     ATTRIBUTES = {k: i for i, k in enumerate(ATTRIBUTES_INV)}
 
-with open(ROOT_DIR / 'explainableGQA/meta_info/obj2attribute.json') as f:
+with open(ROOT_DIR / 'GraphVQA/meta_info/obj2attribute.json') as f:
     mapping = json.load(f)
 
 

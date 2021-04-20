@@ -68,7 +68,7 @@ Put questions json files: `train_balanced_questions.json`, `val_balanced_questio
 
 After this step, the data file structure should look like this:
 ```
-explainableGQA
+GraphVQA
     questions/
         original/
             train_balanced_questions.json
@@ -86,7 +86,7 @@ explainableGQA
 Replace `line 13` in `Constants.py` with your own root directory that contains this source code folder:  
 ```ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')```
 
-For example, if my source code folder is `/home/weixin/neuralPoolTest/explainableGQA `, I can replace `ROOT_DIR` with the following path (Note without the folder name `explainableGQA`):
+For example, if my source code folder is `/home/weixin/neuralPoolTest/GraphVQA `, I can replace `ROOT_DIR` with the following path (Note without the folder name `GraphVQA`):
 ```ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')```
 
 

@@ -588,10 +588,10 @@ def preprocess(raw_data, output_path, dataset_this=None, sg_data=None):
 # if arg == 'create_balanced_programs': # Modified by WX
 if True:
 
-    with open(ROOT_DIR / 'explainableGQA/questions/original/testdev_balanced_questions.json') as f:
+    with open(ROOT_DIR / 'GraphVQA/questions/original/testdev_balanced_questions.json') as f:
         # total 12578 programs
         raw_dev_data = json.load(f)
-    preprocess(raw_dev_data, ROOT_DIR / 'explainableGQA/questions/testdev_balanced_programs.json')
+    preprocess(raw_dev_data, ROOT_DIR / 'GraphVQA/questions/testdev_balanced_programs.json')
 
     # from gqa_dataset.visual_genome import VG
     # dataset_this = VG(
@@ -605,13 +605,13 @@ if True:
     dataset_this = None
 
     # fileStr = SCENEGRAPHS / "val_sceneGraphs.json"
-    fileStr = ROOT_DIR / 'explainableGQA/sceneGraphs/val_sceneGraphs.json'
+    fileStr = ROOT_DIR / 'GraphVQA/sceneGraphs/val_sceneGraphs.json'
     with open(fileStr) as f:
         sg_data = json.load(f)
-    val_questions_path = ROOT_DIR / 'explainableGQA/questions/original/val_balanced_questions.json'
-    val_programs_path = ROOT_DIR / 'explainableGQA/questions/val_balanced_programs.json'
-    # val_questions_path = ROOT_DIR / 'explainableGQA/questions/original/val_balanced_masked_questions.json'
-    # val_programs_path = ROOT_DIR / 'explainableGQA/questions/val_balanced_masked_programs.json'
+    val_questions_path = ROOT_DIR / 'GraphVQA/questions/original/val_balanced_questions.json'
+    val_programs_path = ROOT_DIR / 'GraphVQA/questions/val_balanced_programs.json'
+    # val_questions_path = ROOT_DIR / 'GraphVQA/questions/original/val_balanced_masked_questions.json'
+    # val_programs_path = ROOT_DIR / 'GraphVQA/questions/val_balanced_masked_programs.json'
     with open(val_questions_path) as f:
         # total 132062 programs
         raw_data = json.load(f)
@@ -638,13 +638,13 @@ if True:
     dataset_this = None 
 
     # fileStr = SCENEGRAPHS / "train_sceneGraphs.json"
-    fileStr = ROOT_DIR / 'explainableGQA/sceneGraphs/train_sceneGraphs.json'
+    fileStr = ROOT_DIR / 'GraphVQA/sceneGraphs/train_sceneGraphs.json'
     with open(fileStr) as f:
         sg_data = json.load(f)
-    train_questions_path = ROOT_DIR / 'explainableGQA/questions/original/train_balanced_questions.json'
-    train_programs_path = ROOT_DIR / 'explainableGQA/questions/train_balanced_programs.json'
-    # train_questions_path = ROOT_DIR / 'explainableGQA/questions/original/train_balanced_masked_questions.json'
-    # train_programs_path = ROOT_DIR / 'explainableGQA/questions/train_balanced_masked_programs.json'
+    train_questions_path = ROOT_DIR / 'GraphVQA/questions/original/train_balanced_questions.json'
+    train_programs_path = ROOT_DIR / 'GraphVQA/questions/train_balanced_programs.json'
+    # train_questions_path = ROOT_DIR / 'GraphVQA/questions/original/train_balanced_masked_questions.json'
+    # train_programs_path = ROOT_DIR / 'GraphVQA/questions/train_balanced_masked_programs.json'
     with open(train_questions_path) as f:
         # total 943000 programs
         raw_data = json.load(f)

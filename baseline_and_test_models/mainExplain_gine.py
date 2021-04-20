@@ -24,7 +24,7 @@ CUDA_VISIBLE_DEVICES=3 python mainExplain.py \
 
 
 on testdev set
-CUDA_VISIBLE_DEVICES=2 python /home/ubuntu/GQA/DialogGQA/explainableGQA-master/mainExplain.py \
+CUDA_VISIBLE_DEVICES=2 python /home/ubuntu/GQA/DialogGQA/GraphVQA-master/mainExplain.py \
     --evaluate \
     --evaluate_sets testdev \
     --resume ./gtsg_large_cap_outputdir/checkpoint0029.pth

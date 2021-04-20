@@ -18,17 +18,17 @@ import torchtext
 
 # ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')
 # SCENEGRAPHS = pathlib.Path('/data/weixin/GQA/sceneGraphs/')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
-# EXPLAINABLE_GQA_DIR = pathlib.Path('/home/weixin/neuralPoolTest/explainableGQA') 
+# EXPLAINABLE_GQA_DIR = pathlib.Path('/home/weixin/neuralPoolTest/GraphVQA')
 
 
 # ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')
-# SCENEGRAPHS = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA/sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
-# EXPLAINABLE_GQA_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/explainableGQA') 
+# SCENEGRAPHS = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/GraphVQA/sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
+# EXPLAINABLE_GQA_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/GraphVQA')
 
 
 ROOT_DIR = Constants.ROOT_DIR
-SCENEGRAPHS = ROOT_DIR.joinpath('explainableGQA', 'sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
-EXPLAINABLE_GQA_DIR = ROOT_DIR.joinpath('explainableGQA') 
+SCENEGRAPHS = ROOT_DIR.joinpath('GraphVQA', 'sceneGraphs')  # SCENEGRAPHS = ROOT_DIR / 'Downloads' / 'sceneGraphs'
+EXPLAINABLE_GQA_DIR = ROOT_DIR.joinpath('GraphVQA')
 
 SPLIT_TO_H5_PATH_TABLE = {
     'train_unbiased': '/home/ubuntu/GQA/objectDetection/extract/save_train_feature.h5',
@@ -43,10 +43,10 @@ SPLIT_TO_MODE_TABLE = {
     'debug': 'train',
 }
 SPLIT_TO_PROGRAMMED_QUESTION_PATH_TABLE = {
-     'train_unbiased': str(ROOT_DIR / 'explainableGQA/questions/train_balanced_programs.json'),
-     'val_unbiased': str(ROOT_DIR / 'explainableGQA/questions/val_balanced_programs.json'),
-     'testdev': str(ROOT_DIR / 'explainableGQA/questions/testdev_balanced_programs.json'),
-     'debug': str(ROOT_DIR / 'explainableGQA/debug_programs.json'),
+     'train_unbiased': str(ROOT_DIR / 'GraphVQA/questions/train_balanced_programs.json'),
+     'val_unbiased': str(ROOT_DIR / 'GraphVQA/questions/val_balanced_programs.json'),
+     'testdev': str(ROOT_DIR / 'GraphVQA/questions/testdev_balanced_programs.json'),
+     'debug': str(ROOT_DIR / 'GraphVQA/debug_programs.json'),
 }
 
 class GQA_gt_sg_feature_lookup:
@@ -74,7 +74,7 @@ class GQA_gt_sg_feature_lookup:
         if split in ['debug', 'train_unbiased']:
 
             if split == 'debug':
-                with open(ROOT_DIR / 'explainableGQA' / 'debug_sceneGraphs.json') as f:
+                with open(ROOT_DIR / 'GraphVQA' / 'debug_sceneGraphs.json') as f:
                     self.sg_json_data = json.load(f)
 
             elif split == 'train_unbiased':
@@ -149,9 +149,9 @@ class GQA_gt_sg_feature_lookup:
             return lines
 
         tmp_text_list = []
-        tmp_text_list += load_str_list(ROOT_DIR / 'explainableGQA/meta_info/name_gqa.txt')
-        tmp_text_list += load_str_list(ROOT_DIR / 'explainableGQA/meta_info/attr_gqa.txt')
-        tmp_text_list += load_str_list(ROOT_DIR / 'explainableGQA/meta_info/rel_gqa.txt')
+        tmp_text_list += load_str_list(ROOT_DIR / 'GraphVQA/meta_info/name_gqa.txt')
+        tmp_text_list += load_str_list(ROOT_DIR / 'GraphVQA/meta_info/attr_gqa.txt')
+        tmp_text_list += load_str_list(ROOT_DIR / 'GraphVQA/meta_info/rel_gqa.txt')
 
         import Constants
         tmp_text_list += Constants.OBJECTS_INV + Constants.RELATIONS_INV + Constants.ATTRIBUTES_INV
@@ -401,11 +401,11 @@ class GQATorchDataset(torch.utils.data.Dataset):
     # Prepare short answer vocab
     # read only for using self.XXX to access
     ##################################
-    # with open(ROOT_DIR / 'explainableGQA/meta_info/GQA_plural_answer.json') as infile:
+    # with open(ROOT_DIR / 'GraphVQA/meta_info/GQA_plural_answer.json') as infile:
     #     answer_plural_inv_map = json.load(infile)
-    with open(ROOT_DIR / 'explainableGQA/meta_info/trainval_ans2label.json') as infile:
+    with open(ROOT_DIR / 'GraphVQA/meta_info/trainval_ans2label.json') as infile:
         ans2label = json.load(infile)
-    with open(ROOT_DIR / 'explainableGQA/meta_info/trainval_label2ans.json') as infile:
+    with open(ROOT_DIR / 'GraphVQA/meta_info/trainval_label2ans.json') as infile:
         label2ans = json.load(infile)
     assert len(ans2label) == len(label2ans)
     for ans, label in ans2label.items():
@@ -565,14 +565,14 @@ class GQATorchDataset(torch.utils.data.Dataset):
         del tmp_text_list
 
         # save the vocab
-        with open(ROOT_DIR / 'explainableGQA' / 'questions' / 'GQA_TEXT_obj.pkl', 'wb') as f:
+        with open(ROOT_DIR / 'GraphVQA' / 'questions' / 'GQA_TEXT_obj.pkl', 'wb') as f:
             pickle.dump(GQATorchDataset.TEXT, f)
 
     def load_qa_vocab(self):
         ##################################
         # load existing vocab using pickle
         ##################################
-        with open(ROOT_DIR / 'explainableGQA' / 'questions' / 'GQA_TEXT_obj.pkl', 'rb') as f:
+        with open(ROOT_DIR / 'GraphVQA' / 'questions' / 'GQA_TEXT_obj.pkl', 'rb') as f:
             text_reloaded = pickle.load(f)
             GQATorchDataset.TEXT = text_reloaded
 
