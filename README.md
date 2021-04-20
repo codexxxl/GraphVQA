@@ -86,12 +86,11 @@ GraphVQA
 Replace `line 13` in `Constants.py` with your own root directory that contains this source code folder:  
 ```ROOT_DIR = pathlib.Path('/Users/yanhaojiang/Desktop/cs224w_final/')```
 
-For example, if my source code folder is `/home/weixin/neuralPoolTest/GraphVQA `, I can replace `ROOT_DIR` with the following path (Note without the folder name `GraphVQA`):
-```ROOT_DIR = pathlib.Path('/home/weixin/neuralPoolTest/')```
+Note `ROOT_DIR` does not contain the repo name `GraphVQA`. E.g. for the `ROOT_DIR` above, my source code folder would be `/Users/yanhaojiang/Desktop/cs224w_final/GraphVQA `.
 
 
 ### 3. Preprocess Question Files (just need to run once)
-Run command
+Run command:
 ```
 python preprocess.py
 ```
