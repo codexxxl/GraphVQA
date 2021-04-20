@@ -47,6 +47,7 @@ SPLIT_TO_PROGRAMMED_QUESTION_PATH_TABLE = {
      'val_unbiased': str(ROOT_DIR / 'GraphVQA/questions/val_balanced_programs.json'),
      'testdev': str(ROOT_DIR / 'GraphVQA/questions/testdev_balanced_programs.json'),
      'debug': str(ROOT_DIR / 'GraphVQA/debug_programs.json'),
+     'val_all': str(ROOT_DIR / 'explainableGQA/questions/val_all_programs.json')
 }
 
 class GQA_gt_sg_feature_lookup:
@@ -81,9 +82,9 @@ class GQA_gt_sg_feature_lookup:
                 with open(SCENEGRAPHS / 'train_sceneGraphs.json') as f:
                     self.sg_json_data = json.load(f)
         else:
-            assert split in ['val_unbiased', 'testdev']
+            assert split in ['val_unbiased', 'testdev', 'val_all']
 
-            if split == 'val_unbiased':
+            if split == 'val_unbiased' or split == 'val_all':
                 with open(SCENEGRAPHS / 'val_sceneGraphs.json') as f:
                     self.sg_json_data = json.load(f)
 
@@ -459,7 +460,7 @@ class GQATorchDataset(torch.utils.data.Dataset):
                 # self.build_qa_vocab()
             self.load_qa_vocab()
         else:
-            assert split in ['val_unbiased', 'testdev']
+            assert split in ['val_unbiased', 'testdev', 'val_all']
             ##################################
             # load qa vocab
             ##################################
