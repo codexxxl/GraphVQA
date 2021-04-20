@@ -144,7 +144,7 @@ GraphVQA
     questions/
         original/
             val_all_questions.json
-
+```
 Option 1: Since after running Step 3(preprocess.py), we already have 
 ```
 GraphVQA
