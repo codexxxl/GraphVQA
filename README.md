@@ -136,6 +136,15 @@ To evaluate your model, there are two options:
 2. Use validation_all set provided by GQA official.
 
 
+First download evaluation data from: https://nlp.stanford.edu/data/gqa/eval.zip.
+then unzip the file and move val_all_question.json to `expainableGQA/questions/original/`
+now we will have 
+```
+GraphVQA
+    questions/
+        original/
+            val_all_questions.json
+
 Option 1: Since after running Step 3(preprocess.py), we already have 
 ```
 GraphVQA
@@ -150,16 +159,8 @@ you should get results json file located in './your_outputdir/dump_result.json'
 then, run ```python eval.py --predictions=./your_outputdir/dump_results.json --consistency```
 
 
-Option 2: If you want to use validation_all set, first download evaluation data from: https://nlp.stanford.edu/data/gqa/eval.zip.
-then unzip the file and move val_all_question.json to `expainableGQA/questions/original/`
-now we will have 
-```
-GraphVQA
-    questions/
-        original/
-            val_all_questions.json
-```
-then, run commands ```python preprocess.py --val-all=True```
+Option 2: If you want to use validation_all set, then, run commands 
+```python preprocess.py --val-all=True```
 we should get 
 ```
 GraphVQA
