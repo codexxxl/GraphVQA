@@ -108,7 +108,7 @@ python gqa_dataset_entry.py
 
 #### 5.1. Main Model: GraphVQA-GAT 
 Single GPU training:  
-```CUDA_VISIBLE_DEVICES=0 python mainExplain_gat.py --log-name debug.log ```
+```CUDA_VISIBLE_DEVICES=0 python mainExplain_gat.py --log-name debug.log --batch-size=200 --lr_drop=90```
 
 Distributed training:  
 ```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=200 --lr_drop=90```
