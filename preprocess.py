@@ -17,6 +17,7 @@ from nltk.stem import WordNetLemmatizer
 import Constants
 import numpy as np
 import random
+import argparse
 
 
 ROOT_DIR = Constants.ROOT_DIR
@@ -26,6 +27,15 @@ ROOT_DIR = Constants.ROOT_DIR
 # sys.path.insert(0, str(GQA_DETR_OD_DIR))
 
 lemmatizer = WordNetLemmatizer()
+
+
+def get_args_parser():
+    parser = argparse.ArgumentParser('Explainable GQA Parser', add_help=False)
+
+    parser.add_argument('--val-all', default=False, type=bool, metavar='val_all',
+                        help='generate val-all programs json file')
+
+    return parser
 
 
 def add1(string, extra):
@@ -587,7 +597,11 @@ def preprocess(raw_data, output_path, dataset_this=None, sg_data=None):
 # arg = sys.argv[1]
 # if arg == 'create_balanced_programs': # Modified by WX
 if True:
-
+    parser = argparse.ArgumentParser('Explainable GQA training and evaluation script',
+                                     parents=[get_args_parser()])
+    args = parser.parse_args()
+    print(args.val_all)
+    
     with open(ROOT_DIR / 'GraphVQA/questions/original/testdev_balanced_questions.json') as f:
         # total 12578 programs
         raw_dev_data = json.load(f)
@@ -663,3 +677,21 @@ if True:
     # with open('questions/original/val_balanced_questions.json') as f:
     #     raw_data.update(json.load(f))
     # preprocess(raw_data, 'questions/trainval_balanced_programs.json')
+
+    if args.val_all:
+        dataset_this = None
+
+        # fileStr = SCENEGRAPHS / "val_sceneGraphs.json"
+        fileStr = ROOT_DIR / 'explainableGQA/sceneGraphs/val_sceneGraphs.json'
+        with open(fileStr) as f:
+            sg_data = json.load(f)
+        val_questions_path = ROOT_DIR / 'explainableGQA/questions/original/val_all_questions.json'
+        val_programs_path = ROOT_DIR / 'explainableGQA/questions/val_all_programs.json'
+        # val_questions_path = ROOT_DIR / 'explainableGQA/questions/original/val_balanced_masked_questions.json'
+        # val_programs_path = ROOT_DIR / 'explainableGQA/questions/val_balanced_masked_programs.json'
+        with open(val_questions_path) as f:
+            # total 132062 programs
+            raw_data = json.load(f)
+        # actual: 131548, discard 514 (0.3%)
+        # print(raw_data)
+        preprocess(raw_data, val_programs_path, dataset_this, sg_data)
