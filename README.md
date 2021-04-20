@@ -137,9 +137,12 @@ To evaluate your model, there are two options:
 
 
 Option 1: Since after running Step 3(preprocess.py), we already have 
+```
 GraphVQA
     questions/
         val_balanced_programs.json
+```
+
 then, run commands
 ```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_unbiased'```
 you should get results json file located in './your_outputdir/dump_result.json'
@@ -150,17 +153,21 @@ then, run ```python eval.py --predictions=./your_outputdir/dump_results.json --c
 Option 2: If you want to use validation_all set, first download evaluation data from: https://nlp.stanford.edu/data/gqa/eval.zip.
 then unzip the file and move val_all_question.json to `expainableGQA/questions/original/`
 now we will have 
+```
 GraphVQA
     questions/
         original/
             val_all_questions.json
-
+```
 then, run commands ```python preprocess.py --val-all=True```
 we should get 
+```
 GraphVQA
     questions/
         val_all_programs.json
+```
 
+then, run commands
 ```CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --use_env mainExplain_gat.py --workers=4 --batch-size=4000 --evaluate --resume=outputdir/your_checkpoint.pth --evaluate_sets='val_balanced --output_dir='./your_outputdir/' --evaluate_sets='val_all'```
 you should get results json file located in './your_outputdir/dump_results.json'
 
