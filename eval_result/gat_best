@@ -1,0 +1,57 @@
+
+Binary: 96.30%
+Open: 93.37%
+Accuracy: 94.78%
+Consistency: 98.37%
+Validity: 95.55%
+Plausibility: 95.15%
+Distribution: 0.07 (lower is better)
+
+Accuracy / structural type:
+  choose: 93.57% (4104 questions)
+  compare: 92.96% (1065 questions)
+  logical: 98.79% (4061 questions)
+  query: 93.37% (17033 questions)
+  verify: 96.98% (6757 questions)
+
+Accuracy / semantic type:
+  attr: 93.68% (10607 questions)
+  cat: 92.50% (2133 questions)
+  global: 83.91% (1013 questions)
+  obj: 98.92% (3906 questions)
+  rel: 95.53% (15361 questions)
+
+Accuracy / steps number:
+  1: 99.28% (975 questions)
+  2: 94.05% (18115 questions)
+  3: 94.94% (12004 questions)
+  4: 97.20% (642 questions)
+  5: 99.03% (1236 questions)
+  6: 100.00% (29 questions)
+  7: 100.00% (16 questions)
+  8: 100.00% (3 questions)
+
+Accuracy / words number:
+  3: 94.31% (299 questions)
+  4: 92.38% (2152 questions)
+  5: 97.15% (4109 questions)
+  6: 97.07% (4468 questions)
+  7: 96.16% (3357 questions)
+  8: 96.36% (2690 questions)
+  9: 94.45% (3891 questions)
+  10: 93.88% (2891 questions)
+  11: 92.55% (2643 questions)
+  12: 93.72% (1401 questions)
+  13: 94.75% (1200 questions)
+  14: 88.55% (1362 questions)
+  15: 90.95% (718 questions)
+  16: 93.10% (493 questions)
+  17: 92.81% (445 questions)
+  18: 95.79% (356 questions)
+  19: 94.71% (227 questions)
+  20: 96.15% (130 questions)
+  21: 96.06% (127 questions)
+  22: 97.92% (48 questions)
+  23: 100.00% (9 questions)
+  24: 100.00% (3 questions)
+  27: 100.00% (1 questions)
