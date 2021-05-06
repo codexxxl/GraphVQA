@@ -1,6 +1,8 @@
 # GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/graghvqa-language-guided-graph-neural/graph-question-answering-on-gqa)](https://paperswithcode.com/sota/graph-question-answering-on-gqa?p=graghvqa-language-guided-graph-neural)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/codexxxl/GraphVQA/blob/master/LICENSE)
+
 
 
 This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering]() (NAACL 2021).
