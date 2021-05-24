@@ -5,7 +5,7 @@
 
 
 
-This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering]() (NAACL 2021).
+This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering]() (NAACL 2021 MAI Workshop).
 ```
 @InProceedings{2021graphvqa,
   author =  {Weixin Liang and Yanhao Jiang and Zixuan Liu},
