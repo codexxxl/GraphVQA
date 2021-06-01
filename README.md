@@ -27,6 +27,11 @@ This repo provides the source code of our paper: [GraphVQA: Language-Guided Grap
   <img src="./figs/graphVQA_framework.jpg" width="1000" title="Structure of GraphVQA framework" alt="">
 </p>
 
+<p align="center">
+  <img src="./figs/GraphVQA_results.png" width="1000" title="Experiment Results" alt="">
+</p>
+
+
 
 ## Usage
 ### 0. Dependencies
