@@ -5,7 +5,7 @@
 
 
 
-This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering](https://arxiv.org/abs/2104.10283) (NAACL 2021 MAI Workshop).
+This repo provides the source code of our paper: [GraphVQA: Language-Guided Graph Neural Networks for Scene Graph Question Answering](https://www.aclweb.org/anthology/2021.maiworkshop-1.12/) (NAACL 2021 MAI Workshop) [PDF](https://arxiv.org/pdf/2104.10283.pdf).
 ```
 @inproceedings{2021graphvqa,
   author    = {Weixin Liang and
@@ -13,9 +13,14 @@ This repo provides the source code of our paper: [GraphVQA: Language-Guided Grap
                Zixuan Liu},
   title     = {{GraghVQA}: Language-Guided Graph Neural Networks for Graph-based Visual
                Question Answering},
-  booktitle = {MAI@NAACL-HLT},
-  publisher = {Association for Computational Linguistics},
-  year      = {2021}
+    booktitle = "Proceedings of the Third Workshop on Multimodal Artificial Intelligence",
+    month = jun,
+    year = "2021",
+    address = "Mexico City, Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2021.maiworkshop-1.12",
+    doi = "10.18653/v1/2021.maiworkshop-1.12",
+    pages = "79--86"
 }
 ```
 
