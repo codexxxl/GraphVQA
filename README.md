@@ -45,6 +45,7 @@ Create a `conda` environment with `python` version = 3.6
 
 #### 0.1. Install torchtext, spacy
 Run following commands in the created `conda` environment
+(Note: torchtext requires version: torchtext<0.9.0)
 ```
 conda install -c pytorch torchtext
 conda install -c conda-forge spacy
