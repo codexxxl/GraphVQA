@@ -203,4 +203,25 @@ then, run
 python eval.py --predictions=./your_outputdir/dump_results.json --consistency
 ```
 
+## Related Paper
+[LRTA: A Transparent Neural-Symbolic Reasoning Framework with Modular Supervision for Visual Question Answering](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering) (NeurIPS KR2ML 2020). 
+Weixin Liang, Feiyang Niu, Aishwarya Reganti, Govind Thattai and Gokhan Tur. 
+[[PDF]](https://arxiv.org/abs/2011.10731)
+[[Lightning Talk]](https://slideslive.com/38941483/lrta-a-transparent-neuralsymbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
+[[Blog]](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
+[[Github]](https://github.com/Aishwarya-NR/LRTA_Perturbed_Dataset)
+[[Poster]](https://kr2ml.github.io/2020/papers/KR2ML_2_poster.pdf)
+[[NeurIPS KR2ML 2020]](https://kr2ml.github.io/2020/papers/)
+
+
+
+
+
+
+
+
+
+
+
+
   
