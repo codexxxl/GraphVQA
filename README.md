@@ -25,6 +25,22 @@ This repo provides the source code of our paper: [GraphVQA: Language-Guided Grap
 ```
 
 
+## Related Paper
+[LRTA: A Transparent Neural-Symbolic Reasoning Framework with Modular Supervision for Visual Question Answering](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering) (NeurIPS KR2ML 2020). 
+Weixin Liang, Feiyang Niu, Aishwarya Reganti, Govind Thattai and Gokhan Tur. 
+[[PDF]](https://arxiv.org/abs/2011.10731)
+[[Lightning Talk]](https://slideslive.com/38941483/lrta-a-transparent-neuralsymbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
+[[Blog]](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
+[[Github]](https://github.com/Aishwarya-NR/LRTA_Perturbed_Dataset)
+[[Poster]](https://kr2ml.github.io/2020/papers/KR2ML_2_poster.pdf)
+[[NeurIPS KR2ML 2020]](https://kr2ml.github.io/2020/papers/)
+
+
+## Abstract
+*Images are more than a collection of objects or attributes --- they represent a web of relationships among interconnected objects. Scene Graph has emerged as a new modality for a structured graphical representation of images. Scene Graph encodes objects as nodes connected via pairwise relations as edges. To support question answering on scene graphs, we propose GraphVQA, a language-guided graph neural network framework that translates and executes a natural language question as multiple iterations of message passing among graph nodes. We explore the design space of GraphVQA framework, and discuss the trade-off of different design choices. Our experiments on GQA dataset show that GraphVQA outperforms the state-of-the-art model by a large margin (88.43% vs. 94.78%). 
+Our code is available at https://github.com/codexxxl/GraphVQA*
+
+
 <p align="center">
   <img src="./figs/graphVQA_overview.jpg" width="1000" title="Overview of Visual Question Answering with Scene Graphs" alt="">
 </p>
@@ -202,17 +218,6 @@ then, run
 ```
 python eval.py --predictions=./your_outputdir/dump_results.json --consistency
 ```
-
-## Related Paper
-[LRTA: A Transparent Neural-Symbolic Reasoning Framework with Modular Supervision for Visual Question Answering](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering) (NeurIPS KR2ML 2020). 
-Weixin Liang, Feiyang Niu, Aishwarya Reganti, Govind Thattai and Gokhan Tur. 
-[[PDF]](https://arxiv.org/abs/2011.10731)
-[[Lightning Talk]](https://slideslive.com/38941483/lrta-a-transparent-neuralsymbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
-[[Blog]](https://www.amazon.science/publications/lrta-a-transparent-neural-symbolic-reasoning-framework-with-modular-supervision-for-visual-question-answering)
-[[Github]](https://github.com/Aishwarya-NR/LRTA_Perturbed_Dataset)
-[[Poster]](https://kr2ml.github.io/2020/papers/KR2ML_2_poster.pdf)
-[[NeurIPS KR2ML 2020]](https://kr2ml.github.io/2020/papers/)
-
 
 
 
