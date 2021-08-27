@@ -536,8 +536,12 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         # normal softmax loss for short answer
         ##################################
         short_answer_loss = criterion['short_answer'](short_answer_logits, short_answer_label)
+
+        
         # loss = program_loss + full_answer_loss + short_answer_loss # + execution_bitmap_loss
-        loss = program_loss +  short_answer_loss 
+        # loss = program_loss +  short_answer_loss 
+        loss = short_answer_loss
+        
         # measure accuracy and record loss
         losses.update(loss.item(), this_batch_size)
 
