@@ -520,7 +520,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
             this_text_loss = loss_fn(output, target)
             return this_text_loss
 
-        program_loss = text_generation_loss(criterion['program'], programs_output, programs_target)
+        # program_loss = text_generation_loss(criterion['program'], programs_output, programs_target)
         # full_answer_loss = text_generation_loss(
         #     criterion['full_answer'], full_answers_output, full_answers_target
         # )
@@ -539,8 +539,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         
         # loss = program_loss + full_answer_loss + short_answer_loss # + execution_bitmap_loss
-        # loss = program_loss +  short_answer_loss 
-        loss = short_answer_loss
+        loss = short_answer_loss + 0 * programs_output.mean() # trivially get around unused program input
         
         # measure accuracy and record loss
         losses.update(loss.item(), this_batch_size)
